@@ -31,6 +31,7 @@ public class PuppeteerSharpBrowserWrapper : ICefBrowserWrapper
     public async Task Start(string url, ushort httpServerPort, bool enableAudio, bool enableWebSockets)
     {
         var options = new LaunchOptions { Headless = true };
+        options.Args = new [] { "--enable-speech-synthesis", "--enable-speech-dispatcher", "--autoplay-policy=no-user-gesture-required", "--disable-web-security", "--disable-site-isolation-trials", "--disable-gpu", "--user-data-dir=/tmp/totallynotcef/", "-–no-referrers", "--disk-cache-dir=/dev/null", "--disk-cache-size=1" };
         var chromePath = Environment.GetEnvironmentVariable("CHROME_PATH");
         if (chromePath != null)
         {
